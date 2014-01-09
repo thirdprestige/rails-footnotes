@@ -47,6 +47,8 @@ module Footnotes
       def filtered_routes(filter = {})
         return [] unless filter.is_a?(Hash)
         return routes.reject do |r|
+          route_diff = filter_diff = nil
+          
           silence_warnings do
             filter_diff = filter.diff(r.requirements)
             route_diff  = r.requirements.diff(filter)
